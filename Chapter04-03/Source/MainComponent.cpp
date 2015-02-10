@@ -30,7 +30,7 @@ void MainContentComponent::resized()
 	readFileButton.setBounds(margin, margin, getWidth()/2 - margin * 2, buttonHeight);
 	button2.setBounds(margin, margin, getWidth() / 2 - margin * 2, buttonHeight);
 	button2.setTopLeftPosition( readFileButton.getRight() + margin, readFileButton.getY());
-	imageComponent.setBounds(margin, margin, getWidth() - margin * 2, getHeight() - buttonHeight - margin * 3);
+	imageComponent.setBounds(margin, margin + buttonHeight + margin, getWidth() - margin * 2, getHeight() - buttonHeight - margin * 3);
 }
 
 void MainContentComponent::buttonClicked(Button* button)
