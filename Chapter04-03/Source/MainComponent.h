@@ -30,6 +30,7 @@ public:
 private:
     //==============================================================================
 	TextButton readFileButton;
+	TextButton button2;
 	ImageComponent imageComponent;
 	Image image;
 
