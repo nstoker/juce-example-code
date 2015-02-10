@@ -11,21 +11,35 @@
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
-	: readFileButton("Read Image File?...")
+	: readFileButton("Read Image File")
+	, writeFileButton("Write Image File")
 {
+	brightnessSlider.setRange(0.0, 10.0);
 	addAndMakeVisible(&readFileButton);
 	addAndMakeVisible(&imageComponent);
+	addAndMakeVisible(&brightnessSlider);
+	addAndMakeVisible(&writeFileButton);
 	
 	readFileButton.addListener(this);
-	setSize (600, 400);
+	writeFileButton.addListener(this);
+	brightnessSlider.addListener(this);
+
+	setSize (500, 400);
 }
 
 void MainContentComponent::resized()
 {
-	int buttonHeight = 40;
+	int controlHeight = 20;
 	int margin = 10;
-	readFileButton.setBounds(margin, margin, getWidth() - margin * 2, buttonHeight);
-	imageComponent.setBounds(margin, margin + buttonHeight + margin, getWidth() - margin * 2, getHeight() - buttonHeight - margin * 3);
+	int width = getWidth() - margin * 2;
+
+	readFileButton.setBounds(margin, margin, width, controlHeight);
+	imageComponent.setBounds(margin, 
+		readFileButton.getBottom() + margin, 
+		width, 
+		getHeight() - (controlHeight + margin) * 3 - margin * 2);
+	brightnessSlider.setBounds(margin, imageComponent.getBottom() + margin, width, controlHeight);
+	writeFileButton.setBounds(margin, brightnessSlider.getBottom() + margin, width, controlHeight);
 }
 
 void MainContentComponent::buttonClicked(Button* button)
@@ -35,10 +49,53 @@ void MainContentComponent::buttonClicked(Button* button)
 		FileChooser chooser("Choose an image file to display...");
 		if (chooser.browseForFileToOpen())
 		{
-			image = ImageFileFormat::loadFrom(chooser.getResult());
+			origImage = ImageFileFormat::loadFrom(chooser.getResult());
 
-			if (image.isValid())
-				imageComponent.setImage(image);
+			if (origImage.isValid())
+				imageComponent.setImage(origImage);
+		}
+	} 
+	else if (&writeFileButton == button)
+	{
+		FileChooser chooser("Write processed image to file...");
+
+		if (chooser.browseForFileToSave(true))
+		{
+			FileOutputStream stream(chooser.getResult());
+			PNGImageFormat pngImageFormat;
+			pngImageFormat.writeImageToStream(procImage, stream);
+		}
+	}
+}
+
+void MainContentComponent::sliderValueChanged(Slider* slider)
+{
+	if (&brightnessSlider == slider)
+	{
+		if (origImage.isValid())
+		{
+			const float amount = (float)brightnessSlider.getValue();
+
+			if (amount == 0.f)
+			{
+				procImage == origImage.createCopy();
+			}
+			else {
+				for (int v = 0; v < origImage.getHeight(); ++v)
+				{
+					for (int h = 0; h < origImage.getWidth(); ++h)
+					{
+						Colour col = origImage.getPixelAt(h, v);
+
+						if (amount > 0.f)
+							procImage.setPixelAt(h, v, col.brighter(amount));
+						else if (amount < 0.f)
+							procImage.setPixelAt(h, v, col.darker(amount));
+					}
+				}
+			}
+
+			imageComponent.repaint();
 		}
 	}
 }
