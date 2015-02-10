@@ -11,26 +11,35 @@
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
+	: readFileButton("Read Image File?...")
 {
-    setSize (600, 400);
-}
+	addAndMakeVisible(&readFileButton);
+	addAndMakeVisible(&imageComponent);
 
-MainContentComponent::~MainContentComponent()
-{
-}
+	readFileButton.addListener(this);
 
-void MainContentComponent::paint (Graphics& g)
-{
-    g.fillAll (Colour (0xff001F36));
-
-    g.setFont (Font (16.0f));
-    g.setColour (Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), Justification::centred, true);
+	setSize (600, 400);
 }
 
 void MainContentComponent::resized()
 {
-    // This is called when the MainContentComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
+	int buttonHeight = 40;
+	int margin = 10;
+	readFileButton.setBounds(margin, margin, getWidth() - margin * 2, buttonHeight);
+	imageComponent.setBounds(margin, margin, getWidth() - margin * 2, getHeight() - buttonHeight - margin * 3);
+}
+
+void MainContentComponent::buttonClicked(Button* button)
+{
+	if (&readFileButton == button)
+	{
+		FileChooser chooser("Choose an image file to display...");
+		if (chooser.browseForFileToOpen())
+		{
+			image = ImageFileFormat::loadFrom(chooser.getResult());
+
+			if (image.isValid())
+				imageComponent.setImage(image);
+		}
+	}
 }
