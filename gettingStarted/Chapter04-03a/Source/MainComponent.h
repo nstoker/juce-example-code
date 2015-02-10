@@ -20,18 +20,23 @@
 class MainContentComponent   
 	: public Component
 	, public Button::Listener
+	, public Slider::Listener
 {
 public:
     //==============================================================================
     MainContentComponent();
     void resized();
 	void buttonClicked(Button* button);
+	void sliderValueChanged(Slider* slider);
 
 private:
     //==============================================================================
 	TextButton readFileButton;
 	ImageComponent imageComponent;
-	Image image;
+	Slider brightnessSlider;
+	TextButton writeFileButton;
+	Image origImage, procImage;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
