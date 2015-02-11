@@ -140,6 +140,10 @@ EntryForm::EntryForm ()
     line3Field->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
     line3Field->addListener (this);
 
+    addAndMakeVisible (undoButton = new TextButton ("undoButton"));
+    undoButton->setButtonText (TRANS("Undo"));
+    undoButton->addListener (this);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -159,7 +163,8 @@ EntryForm::EntryForm ()
 	addressData.setProperty(line3Id, String::empty, nullptr);
 	personData.addChild(addressData, -1, nullptr);
 
-	//[/Constructor]
+	personData.addListener(this);
+    //[/Constructor]
 }
 
 EntryForm::~EntryForm()
@@ -180,6 +185,7 @@ EntryForm::~EntryForm()
     line1Field = nullptr;
     line2Field = nullptr;
     line3Field = nullptr;
+    undoButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -216,6 +222,7 @@ void EntryForm::resized()
     line1Field->setBounds (120, 176, 456, 24);
     line2Field->setBounds (120, 208, 456, 24);
     line3Field->setBounds (120, 240, 456, 24);
+    undoButton->setBounds (24, 288, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -228,42 +235,59 @@ void EntryForm::labelTextChanged (Label* labelThatHasChanged)
     if (labelThatHasChanged == firstNameField)
     {
         //[UserLabelCode_firstNameField] -- add your label text handling code here..
-		personData.setProperty(firstNameId, labelThatHasChanged->getText(), nullptr);
+		personData.setProperty(firstNameId, labelThatHasChanged->getText(), &undoManager);
         //[/UserLabelCode_firstNameField]
     }
     else if (labelThatHasChanged == ageField)
     {
         //[UserLabelCode_ageField] -- add your label text handling code here..
-		personData.setProperty(ageId, labelThatHasChanged->getText(), nullptr);
+		personData.setProperty(ageId, labelThatHasChanged->getText(), &undoManager);
         //[/UserLabelCode_ageField]
     }
     else if (labelThatHasChanged == lastNameField)
     {
         //[UserLabelCode_lastNameField] -- add your label text handling code here..
-		personData.setProperty(lastNameId, labelThatHasChanged->getText(), nullptr);
+		personData.setProperty(lastNameId, labelThatHasChanged->getText(), &undoManager);
         //[/UserLabelCode_lastNameField]
     }
     else if (labelThatHasChanged == line1Field)
     {
         //[UserLabelCode_line1Field] -- add your label text handling code here..
-		personData.setProperty(line1Id, labelThatHasChanged->getText(), nullptr);
+		personData.setProperty(line1Id, labelThatHasChanged->getText(), &undoManager);
         //[/UserLabelCode_line1Field]
     }
     else if (labelThatHasChanged == line2Field)
     {
         //[UserLabelCode_line2Field] -- add your label text handling code here..
-		personData.setProperty(line2Id, labelThatHasChanged->getText(), nullptr);
+		personData.setProperty(line2Id, labelThatHasChanged->getText(), &undoManager);
         //[/UserLabelCode_line2Field]
     }
     else if (labelThatHasChanged == line3Field)
     {
         //[UserLabelCode_line3Field] -- add your label text handling code here..
-		personData.setProperty(line3Id, labelThatHasChanged->getText(), nullptr);
+		personData.setProperty(line3Id, labelThatHasChanged->getText(), &undoManager);
         //[/UserLabelCode_line3Field]
     }
 
     //[UserlabelTextChanged_Post]
     //[/UserlabelTextChanged_Post]
+}
+
+void EntryForm::buttonClicked (Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+	undoManager.beginNewTransaction();
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == undoButton)
+    {
+        //[UserButtonCode_undoButton] -- add your button handler code here..
+		undoManager.undo();
+        //[/UserButtonCode_undoButton]
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
 }
 
 
@@ -277,6 +301,34 @@ const Identifier EntryForm::addressId = "address";
 const Identifier EntryForm::line1Id = "line1";
 const Identifier EntryForm::line2Id = "line2";
 const Identifier EntryForm::line3Id = "line3";
+
+void EntryForm::valueTreePropertyChanged(ValueTree& tree, const Identifier& property)
+{
+	if (firstNameId == property)
+	{
+		firstNameField->setText(tree.getProperty(property), dontSendNotification);
+	}
+	else if (lastNameId == property)
+	{
+		lastNameField->setText(tree.getProperty(property), dontSendNotification);
+	}
+	else if(ageId == property)
+	{
+		ageField->setText(tree.getProperty(property), dontSendNotification);
+	}
+	else if(line1Id == property)
+	{
+		line1Field->setText(tree.getProperty(property), dontSendNotification);
+	}
+	else if(line2Id == property)
+	{
+		line2Field->setText(tree.getProperty(property), dontSendNotification);
+	}
+	else if(line3Id == property)
+	{
+		line3Field->setText(tree.getProperty(property), dontSendNotification);
+	}
+}
 //[/MiscUserCode]
 
 
@@ -290,9 +342,10 @@ const Identifier EntryForm::line3Id = "line3";
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="EntryForm" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component, public ValueTree::Listener"
+                 constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
+                 snapShown="1" overlayOpacity="0.330" fixedSize="0" initialWidth="600"
+                 initialHeight="400">
   <BACKGROUND backgroundColour="ff808080"/>
   <GROUPCOMPONENT name="new group" id="f074413a2557a01" memberName="groupComponent"
                   virtualName="" explicitFocusOrder="0" pos="8 152 584 128" title="group"/>
@@ -356,6 +409,9 @@ BEGIN_JUCER_METADATA
          edTextCol="ff000000" edBkgCol="0" labelText="" editableSingleClick="1"
          editableDoubleClick="1" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" bold="0" italic="0" justification="33"/>
+  <TEXTBUTTON name="undoButton" id="cbb43bdb2bf928f5" memberName="undoButton"
+              virtualName="" explicitFocusOrder="0" pos="24 288 150 24" buttonText="Undo"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

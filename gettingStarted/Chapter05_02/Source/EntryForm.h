@@ -35,7 +35,9 @@
                                                                     //[/Comments]
 */
 class EntryForm  : public Component,
-                   public LabelListener
+                   public ValueTree::Listener,
+                   public LabelListener,
+                   public ButtonListener
 {
 public:
     //==============================================================================
@@ -44,11 +46,18 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+	void valueTreePropertyChanged(ValueTree& tree, const Identifier& property);
+	void valueTreeChildAdded(ValueTree& /*parentTree*/, ValueTree& /*child*/){}
+	void valueTreeChildRemoved(ValueTree& /*parentTree*/, ValueTree& /*child*/){}
+	void valueTreeChildOrderChanged(ValueTree& /*tree*/) {}
+	void valueTreeParentChanged(ValueTree& /*tree*/) {}
+	void valueTreeRedirected(ValueTree& /*tree*/) {}
     //[/UserMethods]
 
     void paint (Graphics& g);
     void resized();
     void labelTextChanged (Label* labelThatHasChanged);
+    void buttonClicked (Button* buttonThatWasClicked);
 
 
 
@@ -64,6 +73,8 @@ private:
 	static const Identifier line1Id;
 	static const Identifier line2Id;
 	static const Identifier line3Id;
+
+	UndoManager undoManager;
     //[/UserVariables]
 
     //==============================================================================
@@ -80,6 +91,7 @@ private:
     ScopedPointer<Label> line1Field;
     ScopedPointer<Label> line2Field;
     ScopedPointer<Label> line3Field;
+    ScopedPointer<TextButton> undoButton;
 
 
     //==============================================================================
