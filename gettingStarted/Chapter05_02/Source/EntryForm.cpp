@@ -148,7 +148,18 @@ EntryForm::EntryForm ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    //[/Constructor]
+	personData = ValueTree(personId);
+	personData.setProperty(firstNameId, String::empty, nullptr);
+	personData.setProperty(lastNameId, String::empty, nullptr);
+	personData.setProperty(ageId, String::empty, nullptr);
+
+	ValueTree addressData = ValueTree(addressId);
+	addressData.setProperty(line1Id, String::empty, nullptr);
+	addressData.setProperty(line2Id, String::empty, nullptr);
+	addressData.setProperty(line3Id, String::empty, nullptr);
+	personData.addChild(addressData, -1, nullptr);
+
+	//[/Constructor]
 }
 
 EntryForm::~EntryForm()
@@ -217,31 +228,37 @@ void EntryForm::labelTextChanged (Label* labelThatHasChanged)
     if (labelThatHasChanged == firstNameField)
     {
         //[UserLabelCode_firstNameField] -- add your label text handling code here..
+		personData.setProperty(firstNameId, labelThatHasChanged->getText(), nullptr);
         //[/UserLabelCode_firstNameField]
     }
     else if (labelThatHasChanged == ageField)
     {
         //[UserLabelCode_ageField] -- add your label text handling code here..
+		personData.setProperty(ageId, labelThatHasChanged->getText(), nullptr);
         //[/UserLabelCode_ageField]
     }
     else if (labelThatHasChanged == lastNameField)
     {
         //[UserLabelCode_lastNameField] -- add your label text handling code here..
+		personData.setProperty(lastNameId, labelThatHasChanged->getText(), nullptr);
         //[/UserLabelCode_lastNameField]
     }
     else if (labelThatHasChanged == line1Field)
     {
         //[UserLabelCode_line1Field] -- add your label text handling code here..
+		personData.setProperty(line1Id, labelThatHasChanged->getText(), nullptr);
         //[/UserLabelCode_line1Field]
     }
     else if (labelThatHasChanged == line2Field)
     {
         //[UserLabelCode_line2Field] -- add your label text handling code here..
+		personData.setProperty(line2Id, labelThatHasChanged->getText(), nullptr);
         //[/UserLabelCode_line2Field]
     }
     else if (labelThatHasChanged == line3Field)
     {
         //[UserLabelCode_line3Field] -- add your label text handling code here..
+		personData.setProperty(line3Id, labelThatHasChanged->getText(), nullptr);
         //[/UserLabelCode_line3Field]
     }
 
@@ -252,6 +269,14 @@ void EntryForm::labelTextChanged (Label* labelThatHasChanged)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+const Identifier EntryForm::personId = "person";
+const Identifier EntryForm::firstNameId = "firstName";
+const Identifier EntryForm::lastNameId = "lastName";
+const Identifier EntryForm::ageId = "age";
+const Identifier EntryForm::addressId = "address";
+const Identifier EntryForm::line1Id = "line1";
+const Identifier EntryForm::line2Id = "line2";
+const Identifier EntryForm::line3Id = "line3";
 //[/MiscUserCode]
 
 

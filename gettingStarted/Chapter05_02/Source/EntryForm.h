@@ -54,6 +54,16 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+	ValueTree personData;
+
+	static const Identifier personId;
+	static const Identifier firstNameId;
+	static const Identifier lastNameId;
+	static const Identifier ageId;
+	static const Identifier addressId;
+	static const Identifier line1Id;
+	static const Identifier line2Id;
+	static const Identifier line3Id;
     //[/UserVariables]
 
     //==============================================================================
