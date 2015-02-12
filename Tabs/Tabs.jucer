@@ -5,6 +5,8 @@
               jucerVersion="3.1.0">
   <MAINGROUP id="QnhRLH" name="Tabs">
     <GROUP id="{8E5B031A-1247-F44E-141B-86E2D51F5A13}" name="Source">
+      <FILE id="OJOGw6" name="Note.cpp" compile="1" resource="0" file="Source/Note.cpp"/>
+      <FILE id="v1cRun" name="Note.h" compile="0" resource="0" file="Source/Note.h"/>
       <FILE id="kzw056" name="DemoMultiDocumentPanel.cpp" compile="1" resource="0"
             file="Source/DemoMultiDocumentPanel.cpp"/>
       <FILE id="KAj2f2" name="DemoMultiDocumentPanel.h" compile="0" resource="0"

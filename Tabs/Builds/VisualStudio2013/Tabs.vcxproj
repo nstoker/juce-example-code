@@ -131,6 +131,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Note.cpp"/>
     <ClCompile Include="..\..\Source\DemoMultiDocumentPanel.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
@@ -999,6 +1000,7 @@
     <ClCompile Include="..\..\..\..\..\juce\modules\juce_opengl\juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Note.h"/>
     <ClInclude Include="..\..\Source\DemoMultiDocumentPanel.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\..\..\..\juce\modules\juce_core\text\juce_CharacterFunctions.h"/>
