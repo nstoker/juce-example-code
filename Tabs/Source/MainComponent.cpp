@@ -21,11 +21,19 @@ MainContentComponent::MainContentComponent()
 	addTabButton.addListener(this);
 	addAndMakeVisible(addTabButton);
 
+	addAndMakeVisible(mdp);
+	mdp.setBackgroundColour(Colours::transparentBlack);
+
+	updateLayoutMode();
+	
+
     setSize (600, 400);
 }
 
 MainContentComponent::~MainContentComponent()
 {
+	addTabButton.removeListener(this);
+	showInTabsButton.removeListener(this);
 }
 
 void MainContentComponent::paint (Graphics& g)
@@ -43,6 +51,8 @@ void MainContentComponent::resized()
 	Rectangle<int> buttonArea(area.removeFromTop(28).reduced(2));
 	addTabButton.setBounds(buttonArea.removeFromRight(150));
 	showInTabsButton.setBounds(buttonArea);
+
+	mdp.setBounds(area);
 }
 
 void MainContentComponent::buttonClicked(Button* b)
@@ -57,5 +67,5 @@ void MainContentComponent::buttonClicked(Button* b)
 
 void MainContentComponent::updateLayoutMode()
 {
-	// code to change the window
+	mdp.setLayoutMode(showInTabsButton.getToggleState() ? MultiDocumentPanel::MaximisedWindowsWithTabs : MultiDocumentPanel::FloatingWindows);
 }

@@ -10,7 +10,7 @@
 #define MAINCOMPONENT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
+#include "DemoMultiDocumentPanel.h"
 
 //==============================================================================
 /*
@@ -32,6 +32,7 @@ public:
 private:
 	ToggleButton showInTabsButton;
 	TextButton addTabButton;
+	DemoMultiDocumentPanel mdp;
 
 	void updateLayoutMode();
 	void buttonClicked(Button*) override;

@@ -9,3 +9,22 @@
 */
 
 #include "DemoMultiDocumentPanel.h"
+
+DemoMultiDocumentPanel::DemoMultiDocumentPanel()
+{
+	// 
+}
+
+DemoMultiDocumentPanel::~DemoMultiDocumentPanel()
+{
+	//
+}
+
+bool DemoMultiDocumentPanel::tryToCloseDocument(Component* component)
+{
+#if JUCE_MODAL_LOOPS_PERMITTED
+	// Attempt to close documents
+#endif
+
+	return true;
+}
