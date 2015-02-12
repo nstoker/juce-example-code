@@ -20,7 +20,7 @@ DemoMultiDocumentPanel::~DemoMultiDocumentPanel()
 	//
 }
 
-bool DemoMultiDocumentPanel::tryToCloseDocument(Component* component)
+bool DemoMultiDocumentPanel::tryToCloseDocument(Component* /*component*/)
 {
 #if JUCE_MODAL_LOOPS_PERMITTED
 	// Attempt to close documents
@@ -28,3 +28,4 @@ bool DemoMultiDocumentPanel::tryToCloseDocument(Component* component)
 
 	return true;
 }
+
