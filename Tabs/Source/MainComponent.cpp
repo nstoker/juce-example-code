@@ -61,7 +61,8 @@ void MainContentComponent::buttonClicked(Button* b)
 		updateLayoutMode();
 	else if (&addTabButton == b)
 	{
-		// Code to add a tab
+		int numTabs = mdp.getNumDocuments();
+		addTab("Tab " + String(numTabs), "This is tab number " + String(numTabs) + ".");
 	}
 }
 
