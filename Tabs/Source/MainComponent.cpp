@@ -8,6 +8,7 @@
 
 #include "MainComponent.h"
 #include "Note.h"
+#include "HomePage.h"
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
@@ -21,12 +22,16 @@ MainContentComponent::MainContentComponent()
 	addTabButton.addListener(this);
 	addAndMakeVisible(addTabButton);
 
+	addHomeButton.setButtonText("Add Home");
+	addHomeButton.addListener(this);
+	addAndMakeVisible(addHomeButton);
+
 	addAndMakeVisible(mdp);
 	mdp.setBackgroundColour(Colours::transparentBlack);
 
 	updateLayoutMode();
 	addTab("Initial tab", "We can do stuff with this");
-
+	
     setSize (600, 400);
 }
 
@@ -49,20 +54,26 @@ void MainContentComponent::resized()
 {
 	Rectangle<int>area(getLocalBounds());
 	Rectangle<int> buttonArea(area.removeFromTop(28).reduced(2));
-	addTabButton.setBounds(buttonArea.removeFromRight(150));
+	addTabButton.setBounds(buttonArea.removeFromRight(100).reduced(2));
+	addHomeButton.setBounds(buttonArea.removeFromRight(100));
 	showInTabsButton.setBounds(buttonArea);
 
 	mdp.setBounds(area);
 }
 
-void MainContentComponent::buttonClicked(Button* b)
+void MainContentComponent::buttonClicked(Button* button)
 {
-	if (&showInTabsButton == b)
+	if (&showInTabsButton == button)
 		updateLayoutMode();
-	else if (&addTabButton == b)
+	else if (&addTabButton == button)
 	{
 		int numTabs = mdp.getNumDocuments();
 		addTab("Tab " + String(numTabs), "This is tab number " + String(numTabs) + ".");
+	} 
+	else if (&addHomeButton == button)
+	{
+		int numTabs = mdp.getNumDocuments();
+		addHomepage("Home " + String(numTabs));
 	}
 }
 
@@ -77,4 +88,12 @@ void MainContentComponent::addTab(const String& name, const String& content)
 	newNote->setSize(200, 200);
 
 	mdp.addDocument(newNote, Colours::lightblue.withAlpha(0.6f), true);
+}
+
+void MainContentComponent::addHomepage(const String& name)
+{
+	// Add a new homepage
+	HomePage* newHomePage = new HomePage(name);
+	
+	mdp.addDocument(newHomePage, Colours::forestgreen, true);
 }

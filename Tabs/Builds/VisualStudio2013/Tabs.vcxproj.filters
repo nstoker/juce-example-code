@@ -226,6 +226,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\HomePage.cpp">
+      <Filter>Tabs\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Note.cpp">
       <Filter>Tabs\Source</Filter>
     </ClCompile>
@@ -1179,6 +1182,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\HomePage.h">
+      <Filter>Tabs\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Note.h">
       <Filter>Tabs\Source</Filter>
     </ClInclude>

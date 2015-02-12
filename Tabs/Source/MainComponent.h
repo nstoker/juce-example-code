@@ -32,11 +32,15 @@ public:
 private:
 	ToggleButton showInTabsButton;
 	TextButton addTabButton;
+	TextButton addHomeButton;
+
 	DemoMultiDocumentPanel mdp;
 
 	void updateLayoutMode();
 	void buttonClicked(Button*) override;
 	void addTab(const String& name, const String& content);
+	void addHomepage(const String& name);
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
