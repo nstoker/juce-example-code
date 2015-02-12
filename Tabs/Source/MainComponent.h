@@ -32,6 +32,10 @@ public:
 private:
 	ToggleButton showInTabsButton;
 	TextButton addTabButton;
+
+	void updateLayoutMode();
+	void buttonClicked(Button*) override;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

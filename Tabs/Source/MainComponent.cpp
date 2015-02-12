@@ -44,3 +44,18 @@ void MainContentComponent::resized()
 	addTabButton.setBounds(buttonArea.removeFromRight(150));
 	showInTabsButton.setBounds(buttonArea);
 }
+
+void MainContentComponent::buttonClicked(Button* b)
+{
+	if (&showInTabsButton == b)
+		updateLayoutMode();
+	else if (&addTabButton == b)
+	{
+		// Code to add a tab
+	}
+}
+
+void MainContentComponent::updateLayoutMode()
+{
+	// code to change the window
+}
