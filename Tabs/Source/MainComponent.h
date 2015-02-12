@@ -36,7 +36,7 @@ private:
 
 	void updateLayoutMode();
 	void buttonClicked(Button*) override;
-
+	void addTab(const String& name, const String& content);
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

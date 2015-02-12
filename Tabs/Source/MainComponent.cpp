@@ -7,7 +7,7 @@
 */
 
 #include "MainComponent.h"
-
+#include "Note.h"
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
@@ -25,7 +25,7 @@ MainContentComponent::MainContentComponent()
 	mdp.setBackgroundColour(Colours::transparentBlack);
 
 	updateLayoutMode();
-	
+	addTab("Initial tab", "We can do stuff with this");
 
     setSize (600, 400);
 }
@@ -68,4 +68,12 @@ void MainContentComponent::buttonClicked(Button* b)
 void MainContentComponent::updateLayoutMode()
 {
 	mdp.setLayoutMode(showInTabsButton.getToggleState() ? MultiDocumentPanel::MaximisedWindowsWithTabs : MultiDocumentPanel::FloatingWindows);
+}
+
+void MainContentComponent::addTab(const String& name, const String& content)
+{
+	Note* newNote = new Note(name, content);
+	newNote->setSize(200, 200);
+
+	mdp.addDocument(newNote, Colours::lightblue.withAlpha(0.6f), true);
 }
