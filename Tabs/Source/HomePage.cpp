@@ -27,12 +27,10 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-HomePage::HomePage (const String& name)
+HomePage::HomePage ()
 {
     addAndMakeVisible (label = new Label ("new label",
-                                          TRANS("label text")));
-	setName(name);
-
+                                          TRANS("Demo component")));
     label->setFont (Font (15.00f, Font::plain));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
@@ -106,9 +104,9 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ffffffff"/>
   <LABEL name="new label" id="51b429502d4edcd" memberName="label" virtualName=""
          explicitFocusOrder="0" pos="16 24 150 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="label text" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
+         edBkgCol="0" labelText="Demo component" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
