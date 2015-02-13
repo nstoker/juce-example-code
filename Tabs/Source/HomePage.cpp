@@ -27,7 +27,7 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-HomePage::HomePage ()
+HomePage::HomePage (const String& name)
 {
     addAndMakeVisible (label = new Label ("new label",
                                           TRANS("Demo component")));
