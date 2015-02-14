@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2013
+Project("{FDFA67C0-721B-EE39-988F-3C374D93AEC7}") = "TestVeroDials", "TestVeroDials.vcxproj", "{E21F0F3D-D5CF-01C7-3339-46621287D152}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E21F0F3D-D5CF-01C7-3339-46621287D152}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E21F0F3D-D5CF-01C7-3339-46621287D152}.Debug|Win32.Build.0 = Debug|Win32
+		{E21F0F3D-D5CF-01C7-3339-46621287D152}.Release|Win32.ActiveCfg = Release|Win32
+		{E21F0F3D-D5CF-01C7-3339-46621287D152}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
