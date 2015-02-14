@@ -44,6 +44,18 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+
+	struct VeroDialScales
+	{
+		String measuring;
+		String units;
+		float minValue, maxValue;	// Max and min values for the scale
+		float redAmber;				// Boundary between the lower Red and Amber scales
+		float amberGreen;			// Boundary between the lower Amber and Green scales
+		float greenAmber;			// Boundary between the upper Green and Amber scales
+		float amberRed;				// Boundary between the upper Amber and Red scales
+	};
+	void setScales(const VeroDialScales newScales);
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -54,6 +66,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+	VeroDialScales scales;
     //[/UserVariables]
 
     //==============================================================================

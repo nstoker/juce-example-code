@@ -29,7 +29,7 @@
 //==============================================================================
 VeroDial::VeroDial ()
 {
-    addAndMakeVisible (groupComponent = new GroupComponent ("new group",
+    addAndMakeVisible (groupComponent = new GroupComponent ("dialLabel",
                                                             TRANS("Measuring")));
 
     addAndMakeVisible (slider = new Slider ("new slider"));
@@ -38,7 +38,7 @@ VeroDial::VeroDial ()
     slider->setTextBoxStyle (Slider::TextBoxBelow, false, 70, 20);
     slider->addListener (this);
 
-    addAndMakeVisible (unitsLabel = new Label ("new label",
+    addAndMakeVisible (unitsLabel = new Label ("dialUnits",
                                                TRANS("units")));
     unitsLabel->setFont (Font (15.00f, Font::plain));
     unitsLabel->setJustificationType (Justification::centredLeft);
@@ -50,7 +50,7 @@ VeroDial::VeroDial ()
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (600, 400);
+    setSize (200, 200);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -88,9 +88,9 @@ void VeroDial::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    groupComponent->setBounds (0, 0, 160, 168);
-    slider->setBounds (0 + 78 - ((roundFloatToInt (160 * 0.7813f)) / 2), 0 + 88 - ((roundFloatToInt (168 * 0.7679f)) / 2), roundFloatToInt (160 * 0.7813f), roundFloatToInt (168 * 0.7679f));
-    unitsLabel->setBounds (112, 128, 32, 24);
+    groupComponent->setBounds (0, 0, 144, 152);
+    slider->setBounds (0 + 70 - (125 / 2), 0 + 82 - (129 / 2), 125, 129);
+    unitsLabel->setBounds (107, 126, 32, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -113,6 +113,14 @@ void VeroDial::sliderValueChanged (Slider* sliderThatWasMoved)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+void VeroDial::setScales(const VeroDial::VeroDialScales newScales)
+{
+	scales = newScales;
+	groupComponent->setText(scales.measuring);
+	unitsLabel->setText(scales.units,dontSendNotification);
+	slider->setRange(scales.minValue, scales.maxValue);
+}
 //[/MiscUserCode]
 
 
@@ -126,20 +134,20 @@ void VeroDial::sliderValueChanged (Slider* sliderThatWasMoved)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="VeroDial" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component" constructorParams="VeroDialScales newScale"
+                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
+                 overlayOpacity="0.330" fixedSize="0" initialWidth="200" initialHeight="200">
   <BACKGROUND backgroundColour="ffffffff"/>
-  <GROUPCOMPONENT name="new group" id="3896bfaa672dc5aa" memberName="groupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="0 0 160 168" title="Measuring"/>
+  <GROUPCOMPONENT name="dialLabel" id="3896bfaa672dc5aa" memberName="groupComponent"
+                  virtualName="" explicitFocusOrder="0" pos="0 0 144 152" title="Measuring"/>
   <SLIDER name="new slider" id="e131704f32fe8f96" memberName="slider" virtualName=""
-          explicitFocusOrder="0" pos="78.5c 88.5c 78.125% 76.786%" posRelativeX="3896bfaa672dc5aa"
+          explicitFocusOrder="0" pos="70.5c 81.5c 125 129" posRelativeX="3896bfaa672dc5aa"
           posRelativeY="3896bfaa672dc5aa" posRelativeW="3896bfaa672dc5aa"
           posRelativeH="3896bfaa672dc5aa" min="0" max="10" int="0" style="Rotary"
           textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="70"
           textBoxHeight="20" skewFactor="1"/>
-  <LABEL name="new label" id="15a80314197a5b21" memberName="unitsLabel"
-         virtualName="" explicitFocusOrder="0" pos="112 128 32 24" edTextCol="ff000000"
+  <LABEL name="dialUnits" id="15a80314197a5b21" memberName="unitsLabel"
+         virtualName="" explicitFocusOrder="0" pos="107 126 32 24" edTextCol="ff000000"
          edBkgCol="0" labelText="units" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
