@@ -34,7 +34,7 @@ VeroDial::VeroDial ()
 
     addAndMakeVisible (slider = new Slider ("new slider"));
     slider->setRange (0, 10, 0);
-    slider->setSliderStyle (Slider::LinearBar);
+    slider->setSliderStyle (Slider::Rotary);
     slider->setTextBoxStyle (Slider::TextBoxBelow, true, 70, 20);
     slider->setColour (Slider::rotarySliderFillColourId, Colour (0x000000ff));
     slider->setColour (Slider::rotarySliderOutlineColourId, Colour (0x6c000000));
@@ -149,7 +149,7 @@ BEGIN_JUCER_METADATA
           posRelativeY="3896bfaa672dc5aa" posRelativeW="3896bfaa672dc5aa"
           posRelativeH="3896bfaa672dc5aa" rotarysliderfill="ff" rotaryslideroutline="6c000000"
           textboxbkgd="ffffff" textboxoutline="808080" min="0" max="10"
-          int="0" style="LinearBar" textBoxPos="TextBoxBelow" textBoxEditable="0"
+          int="0" style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="0"
           textBoxWidth="70" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="dialUnits" id="15a80314197a5b21" memberName="unitsLabel"
          virtualName="" explicitFocusOrder="0" pos="97.605%r 100.6%r 25.047% 24"
