@@ -10,7 +10,7 @@
 #define MAINCOMPONENT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
+#include "DisplayDials.h"
 
 //==============================================================================
 /*
@@ -29,6 +29,7 @@ public:
 
 private:
     //==============================================================================
+	ScopedPointer<DisplayDials> dd;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
