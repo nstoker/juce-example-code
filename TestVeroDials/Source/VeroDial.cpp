@@ -34,8 +34,12 @@ VeroDial::VeroDial ()
 
     addAndMakeVisible (slider = new Slider ("new slider"));
     slider->setRange (0, 10, 0);
-    slider->setSliderStyle (Slider::Rotary);
-    slider->setTextBoxStyle (Slider::TextBoxBelow, false, 70, 20);
+    slider->setSliderStyle (Slider::LinearBar);
+    slider->setTextBoxStyle (Slider::TextBoxBelow, true, 70, 20);
+    slider->setColour (Slider::rotarySliderFillColourId, Colour (0x000000ff));
+    slider->setColour (Slider::rotarySliderOutlineColourId, Colour (0x6c000000));
+    slider->setColour (Slider::textBoxBackgroundColourId, Colour (0x00ffffff));
+    slider->setColour (Slider::textBoxOutlineColourId, Colour (0x00808080));
     slider->addListener (this);
 
     addAndMakeVisible (unitsLabel = new Label ("dialUnits",
@@ -77,7 +81,7 @@ void VeroDial::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::white);
+    g.fillAll (Colour (0x68008000));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -88,9 +92,9 @@ void VeroDial::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    groupComponent->setBounds (0, 0, 144, 152);
-    slider->setBounds (0 + 70 - (125 / 2), 0 + 82 - (129 / 2), 125, 129);
-    unitsLabel->setBounds (107, 126, 32, 24);
+    groupComponent->setBounds (0, 0, proportionOfWidth (1.0000f), proportionOfHeight (1.0000f));
+    slider->setBounds (0 + roundFloatToInt (proportionOfWidth (1.0000f) * 0.0493f), 0 + roundFloatToInt (proportionOfHeight (1.0000f) * 0.1007f), roundFloatToInt (proportionOfWidth (1.0000f) * 0.9507f), roundFloatToInt (proportionOfHeight (1.0000f) * 0.9000f));
+    unitsLabel->setBounds ((0 + roundFloatToInt (proportionOfWidth (1.0000f) * 0.0493f)) + roundFloatToInt ((roundFloatToInt (proportionOfWidth (1.0000f) * 0.9507f)) * 0.9621f) - (roundFloatToInt (proportionOfWidth (1.0000f) * 0.2505f)), (0 + roundFloatToInt (proportionOfHeight (1.0000f) * 0.1007f)) + roundFloatToInt ((roundFloatToInt (proportionOfHeight (1.0000f) * 0.9000f)) * 1.0063f) - 24, roundFloatToInt (proportionOfWidth (1.0000f) * 0.2505f), 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -134,21 +138,24 @@ void VeroDial::setScales(const VeroDial::VeroDialScales newScales)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="VeroDial" componentName=""
-                 parentClasses="public Component" constructorParams="VeroDialScales newScale"
-                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="0" initialWidth="200" initialHeight="200">
-  <BACKGROUND backgroundColour="ffffffff"/>
+                 parentClasses="public Component" constructorParams="" variableInitialisers=""
+                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
+                 fixedSize="0" initialWidth="200" initialHeight="200">
+  <BACKGROUND backgroundColour="68008000"/>
   <GROUPCOMPONENT name="dialLabel" id="3896bfaa672dc5aa" memberName="groupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="0 0 144 152" title="Measuring"/>
+                  virtualName="" explicitFocusOrder="0" pos="0 0 100% 100%" title="Measuring"/>
   <SLIDER name="new slider" id="e131704f32fe8f96" memberName="slider" virtualName=""
-          explicitFocusOrder="0" pos="70.5c 81.5c 125 129" posRelativeX="3896bfaa672dc5aa"
+          explicitFocusOrder="0" pos="4.934% 10.072% 95.066% 89.928%" posRelativeX="3896bfaa672dc5aa"
           posRelativeY="3896bfaa672dc5aa" posRelativeW="3896bfaa672dc5aa"
-          posRelativeH="3896bfaa672dc5aa" min="0" max="10" int="0" style="Rotary"
-          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="70"
-          textBoxHeight="20" skewFactor="1"/>
+          posRelativeH="3896bfaa672dc5aa" rotarysliderfill="ff" rotaryslideroutline="6c000000"
+          textboxbkgd="ffffff" textboxoutline="808080" min="0" max="10"
+          int="0" style="LinearBar" textBoxPos="TextBoxBelow" textBoxEditable="0"
+          textBoxWidth="70" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="dialUnits" id="15a80314197a5b21" memberName="unitsLabel"
-         virtualName="" explicitFocusOrder="0" pos="107 126 32 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="units" editableSingleClick="0" editableDoubleClick="0"
+         virtualName="" explicitFocusOrder="0" pos="97.605%r 100.6%r 25.047% 24"
+         posRelativeX="e131704f32fe8f96" posRelativeY="e131704f32fe8f96"
+         posRelativeW="3896bfaa672dc5aa" edTextCol="ff000000" edBkgCol="0"
+         labelText="units" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>

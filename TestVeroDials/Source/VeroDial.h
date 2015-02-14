@@ -55,7 +55,10 @@ public:
 		float greenAmber;			// Boundary between the upper Green and Amber scales
 		float amberRed;				// Boundary between the upper Amber and Red scales
 	};
-	void setScales(const VeroDialScales newScales);
+
+	void setScales(const VeroDial::VeroDialScales newScales);
+
+	//==============================================================================
     //[/UserMethods]
 
     void paint (Graphics& g);
