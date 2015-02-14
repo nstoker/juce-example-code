@@ -59,6 +59,7 @@ private:
     ScopedPointer<VeroDial> dial1;
     ScopedPointer<VeroDial> dial2;
     ScopedPointer<VeroDial> dial3;
+    ScopedPointer<VeroDial> dial4;
 
 
     //==============================================================================
