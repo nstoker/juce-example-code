@@ -8,8 +8,8 @@
       <FILE id="DEKt0U" name="DisplayDials.cpp" compile="1" resource="0"
             file="Source/DisplayDials.cpp"/>
       <FILE id="U6cWCF" name="DisplayDials.h" compile="0" resource="0" file="Source/DisplayDials.h"/>
-      <FILE id="uVIEzr" name="VeroDial.cpp" compile="1" resource="0" file="Source/VeroDial.cpp"/>
       <FILE id="MmBTh5" name="VeroDial.h" compile="0" resource="0" file="Source/VeroDial.h"/>
+      <FILE id="uVIEzr" name="VeroDial.cpp" compile="1" resource="0" file="Source/VeroDial.cpp"/>
       <FILE id="KEPnWy" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
       <FILE id="eLnaZG" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>

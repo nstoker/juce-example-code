@@ -35,6 +35,9 @@ DisplayDials::DisplayDials ()
     addAndMakeVisible (dial2 = new VeroDial());
     dial2->setName ("new component");
 
+    addAndMakeVisible (dial3 = new VeroDial());
+    dial3->setName ("new component");
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -43,6 +46,12 @@ DisplayDials::DisplayDials ()
 
 
     //[Constructor] You can add your own custom stuff here..
+	VeroDial::VeroDialScales dial1scales({ "Voltage", "mV", 0.f, 1000.f, 300.f, 400.f, 600.f, 700.f });
+	VeroDial::VeroDialScales dial2scales({ "Current", "mA", 0.f, 1000.f, 250.f, 300.f, 400.f, 500.f });
+	VeroDial::VeroDialScales dial3scales({ "Power", "mW", 0.f, 1000.f, 300.f, 400.f, 700.f, 800.f });
+	dial1->setScales(dial1scales);
+	dial2->setScales(dial2scales);
+	dial3->setScales(dial3scales);
     //[/Constructor]
 }
 
@@ -53,6 +62,7 @@ DisplayDials::~DisplayDials()
 
     dial1 = nullptr;
     dial2 = nullptr;
+    dial3 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -76,8 +86,9 @@ void DisplayDials::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    dial1->setBounds (112, 80, 150, 128);
-    dial2->setBounds (112, 216, 150, 128);
+    dial1->setBounds (32, 8, 230, 200);
+    dial2->setBounds (32, 224, 150, 128);
+    dial3->setBounds (192, 224, 150, 128);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -103,10 +114,13 @@ BEGIN_JUCER_METADATA
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
   <GENERICCOMPONENT name="new component" id="7daacfd0d0cd26ec" memberName="dial1"
-                    virtualName="" explicitFocusOrder="0" pos="112 80 150 128" class="VeroDial"
-                    params=""/>
+                    virtualName="" explicitFocusOrder="0" pos="32 8 230 200" class="VeroDial"
+                    params="({ &quot;Voltage&quot;, &quot;mV&quot;, 0.f, 1000.f, 300.f, 400.f, 600.f, 700.f })"/>
   <GENERICCOMPONENT name="new component" id="3517585989bd5743" memberName="dial2"
-                    virtualName="" explicitFocusOrder="0" pos="112 216 150 128" class="VeroDial"
+                    virtualName="" explicitFocusOrder="0" pos="32 224 150 128" class="VeroDial"
+                    params="({ &quot;Voltage&quot;, &quot;mV&quot;, 0.f, 1000.f, 300.f, 400.f, 600.f, 700.f })"/>
+  <GENERICCOMPONENT name="new component" id="ccdae78c6319bbde" memberName="dial3"
+                    virtualName="" explicitFocusOrder="0" pos="192 224 150 128" class="VeroDial"
                     params=""/>
 </JUCER_COMPONENT>
 
