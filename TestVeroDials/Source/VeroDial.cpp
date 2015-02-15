@@ -84,6 +84,7 @@ void VeroDial::paint (Graphics& g)
     g.fillAll (Colour (0x68008000));
 
     //[UserPaint] Add your own custom painting code here..
+	//TODO: Identify means of drawing arcs - apparently subclassing the LookAndFeel class appears to be the way to go
     //[/UserPaint]
 }
 
@@ -93,8 +94,8 @@ void VeroDial::resized()
     //[/UserPreResize]
 
     groupComponent->setBounds (0, 0, proportionOfWidth (1.0000f), proportionOfHeight (1.0000f));
-    slider->setBounds (0 + roundFloatToInt (proportionOfWidth (1.0000f) * 0.0493f), 0 + roundFloatToInt (proportionOfHeight (1.0000f) * 0.1007f), roundFloatToInt (proportionOfWidth (1.0000f) * 0.9507f), roundFloatToInt (proportionOfHeight (1.0000f) * 0.9000f));
-    unitsLabel->setBounds ((0 + roundFloatToInt (proportionOfWidth (1.0000f) * 0.0493f)) + roundFloatToInt ((roundFloatToInt (proportionOfWidth (1.0000f) * 0.9507f)) * 0.9621f) - (roundFloatToInt (proportionOfWidth (1.0000f) * 0.2505f)), (0 + roundFloatToInt (proportionOfHeight (1.0000f) * 0.1007f)) + roundFloatToInt ((roundFloatToInt (proportionOfHeight (1.0000f) * 0.9000f)) * 1.0063f) - 24, roundFloatToInt (proportionOfWidth (1.0000f) * 0.2505f), 24);
+    slider->setBounds (0 + roundFloatToInt (proportionOfWidth (1.0000f) * 0.0493f), 0 + roundFloatToInt (proportionOfHeight (1.0000f) * 0.1007f), roundFloatToInt (proportionOfWidth (1.0000f) * 0.9507f), roundFloatToInt (proportionOfHeight (1.0000f) * 0.8993f));
+    unitsLabel->setBounds ((0 + roundFloatToInt (proportionOfWidth (1.0000f) * 0.0493f)) + roundFloatToInt ((roundFloatToInt (proportionOfWidth (1.0000f) * 0.9507f)) * 0.9761f) - (roundFloatToInt (proportionOfWidth (1.0000f) * 0.2505f)), (0 + roundFloatToInt (proportionOfHeight (1.0000f) * 0.1007f)) + roundFloatToInt ((roundFloatToInt (proportionOfHeight (1.0000f) * 0.8993f)) * 1.0060f) - 24, roundFloatToInt (proportionOfWidth (1.0000f) * 0.2505f), 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -125,6 +126,16 @@ void VeroDial::setScales(const VeroDial::VeroDialScales newScales)
 	unitsLabel->setText(scales.units,dontSendNotification);
 	slider->setRange(scales.minValue, scales.maxValue);
 }
+
+void VeroDial::setUnitsFont(const Font newFont)
+{
+	unitsLabel->setFont(newFont);
+}
+
+Font VeroDial::getUnitsFont()
+{
+	return unitsLabel->getFont();
+}
 //[/MiscUserCode]
 
 
@@ -152,7 +163,7 @@ BEGIN_JUCER_METADATA
           int="0" style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="0"
           textBoxWidth="70" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="dialUnits" id="15a80314197a5b21" memberName="unitsLabel"
-         virtualName="" explicitFocusOrder="0" pos="97.605%r 100.6%r 25.047% 24"
+         virtualName="" explicitFocusOrder="0" pos="99.002%r 100.6%r 25.047% 24"
          posRelativeX="e131704f32fe8f96" posRelativeY="e131704f32fe8f96"
          posRelativeW="3896bfaa672dc5aa" edTextCol="ff000000" edBkgCol="0"
          labelText="units" editableSingleClick="0" editableDoubleClick="0"

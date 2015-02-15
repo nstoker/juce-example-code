@@ -57,6 +57,11 @@ DisplayDials::DisplayDials ()
 	dial2->setScales(dial2scales);
 	dial3->setScales(dial3scales);
 	dial4->setScales(dial4scales);
+
+	Font f= dial4->getUnitsFont();
+	f.setTypefaceName("Symbol");
+	dial4->setUnitsFont(f);
+
     //[/Constructor]
 }
 

@@ -57,6 +57,8 @@ public:
 	};
 
 	void setScales(const VeroDial::VeroDialScales newScales);
+	void setUnitsFont(Font /*newFont*/);
+	Font getUnitsFont();
 
 	//==============================================================================
     //[/UserMethods]
