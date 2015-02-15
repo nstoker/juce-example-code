@@ -131,6 +131,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\sqlite3.c"/>
+    <ClCompile Include="..\..\Source\CSqlite3.cpp"/>
     <ClCompile Include="..\..\Source\DisplayDials.cpp"/>
     <ClCompile Include="..\..\Source\VeroDial.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
@@ -1000,6 +1002,8 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\Development\juce\modules\juce_opengl\juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\sqlite3.h"/>
+    <ClInclude Include="..\..\Source\CSqlite3.h"/>
     <ClInclude Include="..\..\Source\DisplayDials.h"/>
     <ClInclude Include="..\..\Source\VeroDial.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
